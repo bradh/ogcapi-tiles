@@ -20,31 +20,36 @@ After a while getting familiar and playing with the OpenAPI definition files (ex
 While under development, the standards are written using AsciiDoc using many files that might be difficult to trace. Please see the compiled standard document as it is easier to read here: https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Tiles/blob/master/core/standard/OAPI_Tiles.html
 
 ### OGC API - Tiles - Part 1: Core
-he definition of OGC API - Tiles - Part 1: Core is the immediate next step. The Standards Working Group (SWG) agreed on the structure shown below.
+The definition of OGC API - Tiles - Part 1: Core is the immediate next step. The Standards Working Group (SWG) agreed on the structure shown below.
 
-1. TileSet - It specifies a tileset resource (a tileset in a single Tile Matrix Set), which is a resource that contains information on how to formulate a request to a tile. It also specifies how the get a tile by indicating the Tile Matrix and the row and column.
-2. TileSets - It It specifies a tilesets resource describing multiple tile sets
-3. DatasetTileSets - OGC API Common - Part 1 (dataset, /map resource at the root): Defines how to get a tile resource from the dataset (or datasets) represented by the services. it will tell the path to get a tile resource.
-4. GeoDataResourceSelection - together with 3, geodata= query parameter: This is identical to the GeoDataResourceSelection conformance class of OGC API - Common and if done adequately.
-5. GeoDataResourceMap - OGC API Common - Part 2 / OGC Feature - Part 1 (collection connection, /maps resource after {collectionID}): It will define how to specify the a link to a tile resource containing a representation of this geospatial data resource (path).
-6. TileMap - It will define how to specify the a link to a tile resource containing a representation of a map (path).
+-  _TileSet_ - Defines how to specify a `tileset` resource, which contains information on how to formulate a tile request.
+  - Included information indicates the associated TileMatrixSet, optional TileMatrixSet limits (TileMatrix, Row, and Column)
+- _TileSets_ - Defines how to specify a `tilesets` resource describing multiple `tileset` resources
+- _DatasetTileSets_ - Defines how to get a tile resource from the dataset (or datasets) represented by the services. It will tell the path to get a tile resource.
+  - OGC API Common - Part 1 (dataset, /map resource at the root): 
+- _GeoDataResourceSelection_ - together with 3, geodata= query parameter: This is identical to the GeoDataResourceSelection conformance class of OGC API - Common and if done adequately.
+- _GeoDataResourceMap_ - Specifies how to define the a link to a tile resource containing a representation of this geospatial data resource (path).
+  - OGC API Common - Part 2 / OGC Feature - Part 1 (collection connection, /maps resource after {collectionID}): 
+- _TileMap_ - Defines how to specify a link to a tile resource containing a representation of a map.
 
 ### Extensions
-We foresee the following extensions (some of them can end into OGC standards and some might not)
-* Other TileMatrixSets  (started in: [clause_7_tile_tms](extensions/tmxs/standard/clause_7_tile_tms.adoc), https://htmlpreview.github.io/?https://raw.githubusercontent.com/opengeospatial/OGC-API-Tiles/tree/master/extensions/tmxs/standard/OAPI_Tiles.html)
-* Info (featureInfo) (started in: [clause_7_tile_info](extensions/info/standard/clause_7_tile_info.adoc), https://htmlpreview.github.io/?https://raw.githubusercontent.com/opengeospatial/OGC-API-Tiles/tree/master/extensions/info/standard/OAPI_Tiles.html)
-* Multi-tile (retrieve a ZIP with many tiles) (started in: [clause_7_multitile](extensions/multitile/standard/clause_7_tile_collections.adoc), https://htmlpreview.github.io/?https://raw.githubusercontent.com/opengeospatial/OGC-API-Tiles/tree/master/extensions/multitile/standard/OAPI_Tiles.html )
+The following exensions may be considered for future development either as additional requirements or separate OGC standards:
+* _Custom TileMatrixSets_  - Definitions of custom TileMatrixSets ([Requirements Class .adoc](extensions/tmxs/standard/clause_7_tile_tms.adoc), [HTML Preview](https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Tiles/blob/master/extensions/tmxs/standard/OAPI_Tiles.html))
+* _Info_ - Feature information ([Requirements Class .adoc](extensions/info/standard/clause_7_tile_info.adoc), [HTML Preview](https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Tiles/blob/master/extensions/info/standard/OAPI_Tiles.html))
+* _Multi-tile_ - Retrieve a ZIP with many tiles ([Requirements Class .adoc](extensions/multitile/standard/clause_7_tile_collections.adoc), [HTML Preview](https://htmlpreview.github.io/?https://github.com/opengeospatial/OGC-API-Tiles/blob/master/extensions/multitile/standard/OAPI_Tiles.html))
 
 ## Using the standard
 
 Those who want to just see the endpoints and responses can explore generic
 OpenAPI definitions in this folder (please paste one of them in the Swagger Editor):
 
-* [OGC-API-Tiles/openapi/](https://github.com/opengeospatial/OGC-API-Tiles/tree/master/openapi)
+- _API Definition Explorer_ - Generic OpenAPI definitions that may be explored within [SwaggerHub](https://app.swaggerhub.com/) may be found [here](./openapi)
+- _Reference Implementations_ - Several reference server and client implementations of the draft specification may be found [here](./implementations.adoc)
+- _Quick Start Guide_ - A quick start guide demonstrating several basic interaction patterns with an API Tiles endpoint may be found [here](./QuickGuide)
 
-Several implementations of the draft standard exist:
 
-[Implementations of the draft specification / demo services](./implementations.adoc)
+**WARNING: This section needs to be updated.**
+
 
 ## Examples
 An example OpenAPI definition, that describes hypothetical WebAPI conformant to this standard to expose vector tiles is available here: https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-tiles-opf-xmp-vt-more-1-collection/1.0.0
@@ -52,9 +57,6 @@ A resolved (almost without dependencies with other files) YAML file, synchronize
 
 An example OpenAPI definition, that describes hypothetical WebAPI conformant to this standard to expose map tiles is available here: https://app.swaggerhub.com/apis/UAB-CREAF/ogc-api-map-tiles-opf-xmp-mt-more-1-collection/1.0.0
 A resolved (almost without dependencies with other files) YAML file, synchronized with the previous working document, is available in this github repository at: https://github.com/opengeospatial/OGC-API-tiles/tree/master/openapi/swaggerhub/map-tiles.yaml
-
-
-WARNING: This section need to be updated.
 
 Until mid July 2019, the work was focused on providing OpenAPI services description examples and domains (libraries). Now we believe this work is finalized, but each time that we take a look we still find gaps, mistakes and things that can be improved.
 We expect that during the effort of extracting the knowledge accumulated (hopefully) in these files to create the standard, we will keep fixing, perfecting and evolving things.
